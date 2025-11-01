@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { ReflectionEntry } from '../types';
 
@@ -29,12 +28,7 @@ export const ReflectionHistory: React.FC<ReflectionHistoryProps> = ({ entries })
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="font-bold text-brand-dark">{formatDate(entry.date)}</p>
-                    <p className="text-xs text-gray-500">Total Score: <span className="font-semibold">{entry.totalScore}</span></p>
-                  </div>
-                  <div className="flex space-x-3 text-sm">
-                    <span title="Vibration" role="img" aria-label="Vibration">💫 {entry.vibration}</span>
-                    <span title="Balance" role="img" aria-label="Balance">⚖️ {entry.balance}</span>
-                    <span title="Energy" role="img" aria-label="Energy">🔥 {entry.energy}</span>
+                    <p className="text-xs text-gray-500">Total Score: <span className="font-semibold">{entry.total_score}</span></p>
                   </div>
                 </div>
                 {entry.note && (

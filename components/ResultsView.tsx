@@ -4,15 +4,13 @@ import type { ReflectionEntry } from '../types';
 import { ScoreCard } from './ScoreCard';
 import { ReflectionChart } from './ReflectionChart';
 import { ReflectionHistory } from './ReflectionHistory';
-import { DataManagement } from './DataManagement';
 
 interface ResultsViewProps {
   reflections: ReflectionEntry[];
   onNewEntry: () => void;
-  onImport: (data: ReflectionEntry[]) => void;
 }
 
-export const ResultsView: React.FC<ResultsViewProps> = ({ reflections, onNewEntry, onImport }) => {
+export const ResultsView: React.FC<ResultsViewProps> = ({ reflections, onNewEntry }) => {
   const latestEntry = reflections[0];
   const todayString = new Date().toISOString().split('T')[0];
   const hasSubmittedToday = latestEntry?.date === todayString;
@@ -35,10 +33,9 @@ export const ResultsView: React.FC<ResultsViewProps> = ({ reflections, onNewEntr
   return (
     <>
       <div className="space-y-8">
-        <ScoreCard score={latestEntry.totalScore} />
+        <ScoreCard score={latestEntry.total_score} />
         <ReflectionChart data={reflections} />
         <ReflectionHistory entries={reflections} />
-        <DataManagement reflections={reflections} onImport={onImport} />
         {!hasSubmittedToday && (
           <div className="text-center pt-4">
               <p className="mb-4">今日のリフレクションがまだです。</p>

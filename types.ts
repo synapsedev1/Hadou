@@ -1,9 +1,13 @@
-
 export interface ReflectionEntry {
+  id?: number;
+  user_id?: string;
   date: string;
-  vibration: number;
-  balance: number;
-  energy: number;
-  totalScore: number;
+  total_score: number;
   note: string;
+}
+
+export interface Profile {
+  id: string;
+  updated_at: string;
+  username: string;
 }

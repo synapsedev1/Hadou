@@ -1,22 +1,22 @@
-
 import React, { useState } from 'react';
 import type { ReflectionEntry } from '../types';
 import { SliderInput } from './SliderInput';
 
 interface ReflectionFormProps {
-  onSave: (entry: Omit<ReflectionEntry, 'date' | 'totalScore'>) => void;
+  onSave: (entry: { total_score: number; note: string; }) => void;
   initialData?: ReflectionEntry;
 }
 
 export const ReflectionForm: React.FC<ReflectionFormProps> = ({ onSave, initialData }) => {
-  const [vibration, setVibration] = useState(initialData?.vibration || 5);
-  const [balance, setBalance] = useState(initialData?.balance || 5);
-  const [energy, setEnergy] = useState(initialData?.energy || 5);
+  const [vibration, setVibration] = useState(5);
+  const [balance, setBalance] = useState(5);
+  const [energy, setEnergy] = useState(5);
   const [note, setNote] = useState(initialData?.note || '');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSave({ vibration, balance, energy, note });
+    const totalScore = Math.round((vibration * 0.4 + balance * 0.4 + energy * 0.2) * 10);
+    onSave({ total_score: totalScore, note });
   };
 
   return (
